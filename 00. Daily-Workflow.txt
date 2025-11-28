@@ -76,6 +76,8 @@ git status  # Debe decir "On branch feature/nombre"
 
 Objetivo: Desarrollar tu funcionalidad con commits incrementales.
 
+--
+
 3.1. Hacer Cambios
 
 bash
@@ -85,6 +87,8 @@ code .
 
 # Trabajar normalmente en tus archivos
 # Crear, editar, eliminar archivos según necesites
+
+--
 
 3.2. Revisar Cambios
 
@@ -105,6 +109,8 @@ git diff ruta/al/archivo.py
 # Ver diferencias resumidas
 
 git diff --stat
+
+--
 
 3.3. Hacer Commits
 
@@ -151,12 +157,14 @@ TIPOS DE COMMIT (CONVENTIONAL COMMITS)
 
 Ejemplos de buenos commits:
 
-bashg
+bash
 
-it commit -m "feat: add section 02 with 5 variable examples"
+git commit -m "feat: add section 02 with 5 variable examples"
 git commit -m "docs: create README for section 02"
 git commit -m "feat: add 3 exercises for variables practice"
 git commit -m "fix: correct solution for exercise 01
+
+--
 
 3.4. Múltiples Commits
 
@@ -181,6 +189,8 @@ git commit -m "docs: add section README"
 
 git log --oneline
 
+--
+
 3.5. Verificar tu Trabajo
 
 bash
@@ -200,4 +210,42 @@ git log --oneline --graph --all -10
 # Ver qué archivos están en el último commit
 
 git show --name-only
+
+----------------------------------------------------
+
+📤 4. FINALIZAR FEATURE (PR a dev)
+
+Objetivo: Integrar tu feature a dev mediante Pull Request con aprobación.
+
+4.1. Verificar Antes de Subir
+
+bash
+
+# Asegurarte de estar en tu feature branch
+
+git branch
+
+# Debe mostrar: * feature/nombre
+
+# Verificar que no hay cambios pendientes
+
+git status
+
+# Ver todos tus commits
+
+git log --oneline dev..HEAD
+
+--
+
+4.2. Subir Feature a GitHub
+
+bash
+
+# Subir tu feature branch al remoto
+
+git push -u origin feature/nombre-descriptivo
+
+# Ejemplo:
+
+git push -u origin feature/add-documento-flujo-diario
 
