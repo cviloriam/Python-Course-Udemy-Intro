@@ -1,0 +1,100 @@
+# ====================================================
+# METADATOS DEL ARCHIVO
+# ====================================================
+
+# Autor del Código: Carlos Viloria
+# Fecha de Creación: 28 de Noviembre de 2025
+# Repositorio de GitHub: https://github.com/cviloriam/Python-Course-Udemy-Intro
+
+# Módulo del Curso: Bucles 'while' y Sentencias de Control
+# Este código está completamente en español.
+
+# ====================================================
+# 1. INTRODUCCIÓN A LOS BUCLES 'MIENTRAS' (WHILE)
+# ====================================================
+
+# Los bucles 'while' permiten ejecutar un bloque de código REPETIDAMENTE
+# MIENTRAS (as long as) una condición especificada sea VERDADERA.
+# Si la condición nunca cambia a Falsa, el bucle será infinito.
+
+contador = 0
+
+# La condición es: ¿Es 'contador' menor que 5?
+while contador < 5:
+    # 1. Incrementamos el contador: contador = 0 + 1 (1, luego 2, etc.)
+    contador = contador + 1
+
+    # 2. Imprimimos el valor actual del contador.
+    print(f"Bucle simple: {contador}")
+
+# El bucle termina cuando 'contador' llega a 5, haciendo la condición Falsa.
+
+###
+
+# ====================================================
+# 2. SENTENCIA 'break' (ROMPER)
+# ====================================================
+
+# La sentencia 'break' se usa para SALIR INMEDIATAMENTE del bucle actual,
+# incluso si la condición del 'while' todavía es Verdadera.
+
+contador = 0
+
+while contador < 5:
+    contador = contador + 1
+
+    # Condición de ruptura: Si el contador es 3, salimos del bucle.
+    if contador == 3:
+        print(f"¡Ruptura! El contador llegó a {contador}. Saliendo del bucle.")
+        break # Rompe el bucle aquí.
+
+    # Esta línea solo se ejecuta si NO se activó el 'break'.
+    print(f"Bucle con break: {contador}")
+
+# El resultado será 1, 2, y luego el mensaje de ruptura. El 3 no se imprime después del break.
+
+###
+
+# ====================================================
+# 3. SENTENCIA 'continue' (CONTINUAR)
+# ====================================================
+
+# La sentencia 'continue' se usa para SALTAR el resto del código del bloque
+# y pasar directamente a la SIGUIENTE iteración (comprobación de la condición).
+
+contador = 0
+
+while contador < 5:
+    contador = contador + 1
+
+    # Condición de continuación: Si el contador es 3, saltamos la impresión.
+    if contador == 3:
+        print(f"Saltando el paso {contador} con 'continue'.")
+        continue # Vuelve al inicio del 'while' (a la condición) sin ejecutar el código de abajo.
+
+    # Esta línea se salta cuando contador es 3.
+    print(f"Bucle con continue: {contador}")
+
+# El resultado será 1, 2, el mensaje de salto, 4, 5. El número 3 no aparece impreso al final.
+
+###
+
+# ====================================================
+# 4. SENTENCIA 'pass' (PASAR)
+# ====================================================
+
+# La sentencia 'pass' es un marcador de posición. No hace absolutamente NADA.
+# Se utiliza cuando la sintaxis de Python requiere una línea de código
+# (como después de un 'if'), pero no quieres ejecutar ninguna acción.
+
+contador = 0
+
+while contador < 5:
+    contador = contador + 1
+
+    # Condición 'pass': El programa no hace nada en este punto y continúa normalmente.
+    if contador == 3:
+        pass # Ignora la condición y no realiza ninguna acción.
+
+    # El programa continúa y se imprime el número 3 normalmente.
+    print(f"Bucle con pass: {contador}")
