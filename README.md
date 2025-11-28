@@ -1,6 +1,6 @@
 # 🐍 Python – Curso de Introducción (Udemy)
-Repositorio: **Python-Course-Udemy-Intro**  
-Autor: **Carlos Viloria (cviloriam)**  
+Repositorio       : **Python-Course-Udemy-Intro**  
+Autor             : **Carlos Viloria (cviloriam)**  
 Repositorio remoto: https://github.com/cviloriam/Python-Course-Udemy-Intro  
 
 Este repositorio contiene los **materiales y ejercicios** del curso:

@@ -1,0 +1,205 @@
+📅 1. INICIO DEL DÍA
+
+Objetivo: Sincronizar tu repositorio local con GitHub.
+
+bash
+
+# Navegar a la carpeta del proyecto
+
+cd "G:/My Drive/1.Devs/Code/Python/Courses/Udemy/Intro-To-Python-Programming"
+
+# Actualizar dev (rama de desarrollo)
+
+git checkout dev
+git pull origin dev
+
+# Actualizar main (rama de producción)
+
+git checkout main
+git pull origin main
+
+# Volver a dev (donde trabajarás)
+
+git checkout dev
+
+# Verificar estado
+
+git status
+git log --oneline --graph --all -10
+
+----------------------------------------------------
+
+🌿 2. CREAR NUEVA FEATURE
+
+Objetivo: Crear una rama aislada para tu nueva funcionalidad.
+
+Convenciones de Nombres:
+
+CONVENCIONES DE NOMBRES PARA RAMAS (GIT)
+================================================================================
+| TIPO                | PREFIJO   | EJEMPLO                                    |
+================================================================================
+| Nueva funcionalidad | feature/  | feature/add-section-02-variables           |
+| Corrección de bug   | fix/      | fix/typo-in-readme                         |
+| Documentación       | docs/     | docs/add-setup-guide                       |
+| Refactorización     | refactor/ | refactor/improve-structure                 |
+| Mantenimiento       | chore/    | chore/update-dependencies                  |
+================================================================================
+
+Comandos:
+
+bash
+
+# SIEMPRE desde dev actualizado
+
+git checkout dev
+git pull origin dev
+
+# Crear y cambiar a la nueva feature branch
+
+git checkout -b feature/nombre-descriptivo
+
+# Ejemplo real:
+
+git checkout -b feature/add-documeto-flujo-trabajo-diario
+
+Verificar:
+
+bash
+
+git branch  # Debe mostrar * en tu feature
+git status  # Debe decir "On branch feature/nombre"
+
+----------------------------------------------------
+
+💻 3. TRABAJAR EN LA FEATURE
+
+Objetivo: Desarrollar tu funcionalidad con commits incrementales.
+
+--
+
+3.1. Hacer Cambios
+
+bash
+
+# Abrir el editor (VS Code, PyCharm, etc.)
+code .
+
+# Trabajar normalmente en tus archivos
+# Crear, editar, eliminar archivos según necesites
+
+3.2. Revisar Cambios
+
+bash
+
+# Ver qué archivos cambiaron
+
+git status
+
+# Ver diferencias línea por línea
+
+git diff
+
+# Ver diferencias de un archivo específico
+
+git diff ruta/al/archivo.py
+
+# Ver diferencias resumidas
+
+git diff --stat
+
+3.3. Hacer Commits
+
+bash
+
+# Opción 1: Agregar archivos específicos
+
+git add archivo1.py
+git add archivo2.py
+git add docs/nuevo-documento.md
+
+# Opción 2: Agregar todos los cambios (usar con precaución)
+
+git add .
+
+# Hacer commit con mensaje descriptivo
+
+git commit -m "feat: add variables examples for section 02"
+
+# Verificar que el commit se hizo
+
+git log --oneline -1
+
+Formato de Mensajes de Commit:
+
+<tipo>: <descripción corta en presente>
+
+[cuerpo opcional con más detalles]
+
+[footer opcional: referencias a issues, breaking changes, etc.]
+
+TIPOS DE COMMIT (CONVENTIONAL COMMITS)
+======================================================================================
+| TIPO      | USO                     | EJEMPLO                                      |
+======================================================================================
+| feat:     | Nueva funcionalidad     | feat: add loops examples                     |
+| fix:      | Corrección de bug       | fix: correct typo in exercise 03             |
+| docs:     | Documentación           | docs: update README with setup instructions  |
+| style:    | Formato, espacios       | style: format code with black                |
+| refactor: | Refactorización         | refactor: simplify function logic            |
+| test:     | Tests                   | test: add unit tests for calculator          |
+| chore:    | Mantenimiento           | chore: update gitignore                      |
+======================================================================================
+
+Ejemplos de buenos commits:
+
+bashg
+
+it commit -m "feat: add section 02 with 5 variable examples"
+git commit -m "docs: create README for section 02"
+git commit -m "feat: add 3 exercises for variables practice"
+git commit -m "fix: correct solution for exercise 01
+
+3.4. Múltiples Commits
+
+bash
+
+# Hacer cambios...
+
+git add .
+git commit -m "feat: add string examples"
+
+# Hacer más cambios...
+
+git add .
+git commit -m "feat: add number examples"
+
+# Hacer más cambios...
+
+git add .
+git commit -m "docs: add section README"
+
+# Ver historial
+
+git log --oneline
+
+3.5. Verificar tu Trabajo
+
+bash
+
+# Estado actual
+
+git status
+
+# Últimos commits
+
+git log --oneline -5
+
+# Historial gráfico
+
+git log --oneline --graph --all -10
+
+# Ver qué archivos están en el último commit
+
+git show --name-only
+
