@@ -1,4 +1,4 @@
-# ⚙️ Manual de Vuelo – Flujo de Trabajo Diario
+# ⚙️ Manual Flujo de Trabajo Diario
 
 *Python-Course-Udemy-Intro*
 
@@ -14,423 +14,267 @@ Su objetivo es garantizar:
 
 ---
 
-# 🟦 1. Estar SIEMPRE en `dev` antes de comenzar
+# 🧭 A. GitHub – Validación Inicial
 
-Antes de iniciar tu jornada, asegúrate de estar en la rama correcta:
+### ✅ A.1 Verificar que el repositorio remoto está limpio
+
+Antes de comenzar cualquier tarea:
+
+1. Ingresar a GitHub.
+2. Abrir el repositorio del proyecto.
+3. Validar que:
+
+   * No existan **Pull Requests abiertos**.
+   * No existan **ramas sueltas** (solo deben existir `main` y `dev`).
+   * No haya cambios pendientes por aprobar.
+
+> 📌 *Si hay PRs abiertos, deben resolverse primero antes de comenzar trabajo nuevo.*
+
+---
+
+# 💻 B. Git Bash – Acceder al Repositorio Local
+
+### 🔹 B.1 Abrir Git Bash desde el explorador
+
+1. Buscar la carpeta del repositorio local.
+2. Clic derecho en un espacio vacío.
+3. Seleccionar **Open Git Bash Here**.
+
+### 🔹 B.2 Abrir Git Bash mediante `cd`
+
+```bash
+cd "/g/My Drive/1.Devs/Code/Python/Courses/Udemy/Intro-To-Python-Programming"
+```
+
+---
+
+# 🔄 C. Git Bash – Descargar cambios desde el remoto (`main` y `dev`)
+
+> ⚠️ Primero sincronizar **main**, después sincronizar **dev**.
+
+### 🔸 C.1.a Actualizar `main`
+
+```bash
+git checkout main
+git fetch origin
+git pull --no-edit
+git status
+```
+
+### 🔸 C.1.b Actualizar `dev`
 
 ```bash
 git checkout dev
+git fetch origin
 git pull --no-edit
+git status
+git log --oneline --graph --decorate --all
+```
+
+---
+
+# 🌱 D. Git Bash – Crear nueva rama para la tarea específica
+
+### 📌 Convenciones para nombres de ramas
+
+```
+================================================================================
+| TIPO                | PREFIJO   | EJEMPLO                                    |
+================================================================================
+| Nueva funcionalidad | feature/  | feature/add-section-02-variables           |
+| Corrección de bug   | fix/      | fix/typo-in-readme                         |
+| Documentación       | docs/     | docs/add-setup-guide                       |
+| Refactorización     | refactor/ | refactor/improve-structure                 |
+| Mantenimiento       | chore/    | chore/update-dependencies                  |
+================================================================================
+```
+
+### 🔹 D.1 Crear la rama desde `dev`
+
+```bash
+git checkout dev
+git checkout -b feature/getting-started-with-python
+```
+
+### 🔹 D.2 Abrir VS Code
+
+```bash
+code .
+```
+
+---
+
+# 📝 E. Visual Studio Code – Realizar cambios
+
+En VS Code puedes:
+
+* Editar archivos existentes
+* Agregar archivos nuevos
+* Crear carpetas
+* Probar scripts Python
+* Documentar en Markdown
+* Guardar cambios con **Ctrl + S**
+
+> 💡 *VS Code es donde ocurre todo el desarrollo real.*
+
+---
+
+# 💾 F. Git Bash – Guardar cambios localmente
+
+### 🔸 F.1 Ver estado del repositorio
+
+```bash
+git status
+```
+
+### 🔸 F.2 Agregar cambios
+
+```bash
+git add .
+```
+
+### 🔸 F.3 Crear un commit
+
+```bash
+git commit -m "feat: elaboración programas fundamentales y de orientación a objetos en py"
+```
+
+> 🧠 *Los commits deben ser concretos, claros y pequeños.*
+
+---
+
+# 🚀 G. Git Bash – Subir la nueva rama al remoto
+
+### 🔸 G.1 Push inicial
+
+```bash
+git push -u origin feature/getting-started-with-python
+```
+
+> 📌 *Aún no se actualiza `dev`. Solo se crea la rama remota.*
+
+---
+
+# 🔀 H. GitHub – Crear Pull Request (feature → dev)
+
+### 🔹 H.1 Crear PR
+
+1. Entrar con el usuario administrador.
+2. Ir a **Pull Requests**.
+3. Crear un PR:
+
+   * **base:** `dev`
+   * **compare:** *la rama de la tarea específica*
+4. Asignar revisor.
+
+---
+
+# ✅ I. GitHub – Aprobar PR hacia `dev`
+
+### 🔹 I.1 Proceso de revisión
+
+1. Ingresar con el usuario aprobador.
+2. Revisar cambios.
+3. Clic en **Review changes** → **Approve**.
+4. Enviar revisión.
+5. Hacer clic en **Merge pull request**.
+6. Confirmar.
+
+> ✔️ GitHub puede eliminar automáticamente la rama remota.
+
+---
+
+# 🔁 J. Git Bash – Sincronizar `dev` y limpiar ramas
+
+### 🔸 J.1 Actualizar `dev`
+
+```bash
+git checkout dev
+git fetch origin
+git pull --no-edit
+```
+
+### 🔸 J.2 Ver ramas disponibles
+
+```bash
+git branch
+```
+
+### 🔸 J.3 Eliminar rama local
+
+```bash
+git branch -d feature/getting-started-with-python
+```
+
+### 🔸 J.4 Eliminar rama remota
+
+```bash
+git push origin --delete feature/getting-started-with-python
+```
+
+---
+
+# 📤 K. GitHub – Crear Pull Request (`dev` → `main`)
+
+### 🔹 K.1 Crear PR
+
+1. Ir a **Pull Requests**.
+2. Crear PR:
+
+   * **base:** `main`
+   * **compare:** `dev`
+3. Asignar revisor.
+
+> 🏁 Este PR contiene todos los cambios estables desarrollados.
+
+---
+
+# 🛡️ L. GitHub – Aprobar PR hacia `main`
+
+### 🔹 L.1 Proceso de aprobación
+
+1. Ingresar con el aprobador.
+2. Revisar cambios → **Approve**.
+3. Ingresar con el administrador.
+4. Debido a reglas de protección:
+
+   * Seleccionar: **Merge without waiting for requirements to be met (bypass rules)**
+   * Click en **Bypass rules and merge (squash)**
+5. Confirmar.
+
+> ⚠️ Usar *bypass rules* solo cuando `main` debe ser actualizado manualmente.
+
+---
+
+# 📥 M. Git Bash – Actualizar `main` con los últimos cambios
+
+### 🔸 M.1 Bajar código
+
+```bash
+git checkout main
+git fetch origin
+git pull --no-edit
+git status
+git log --oneline --graph --decorate --all
 ```
 
 Salida esperada:
 
 ```
-Your branch is up to date with 'origin/dev'.
-nothing to commit, working tree clean
-```
-
-Esto asegura que tu nuevo trabajo estará basado en la última versión del proyecto.
-
----
-
-# 🟩 2. Crear una nueva rama **feature/** para cada tarea
-
-NUNCA trabajes directamente en `dev`.
-Siempre crea una rama de trabajo con un nombre claro:
-
-```bash
-git checkout -b feature/<nombre-de-la-tarea>
-```
-
-Ejemplos recomendados:
-
-* `feature/docs-getting-started`
-* `feature/leccion-01-variables`
-* `feature/agregar-ejercicios-bucles`
-* `feature/refactor-readme`
-
-Regla de oro:
-
-> **Una tarea = una rama feature**
-
----
-
-# 🟨 3. Trabajar en VS Code (modificaciones de archivos)
-
-Abrir editor:
-
-```bash
-code .
-```
-
-Durante el trabajo:
-
-* Editar archivos
-* Crear nuevas carpetas o documentación
-* Ejecutar scripts Python
-* Verificar que `Source Control` no muestra cambios inesperados
-
----
-
-# 🟧 4. Guardar tu avance (commit lógico)
-
-Cuando completes un bloque funcional pequeño:
-
-```bash
-git status
-git add .
-git commit -m "feat: descripcion breve del cambio"
-```
-
-Ejemplos:
-
-* `feat: agregar documento getting started`
-* `docs: estructurar carpeta de documentación`
-* `refactor: mejorar estructura de README`
-
-> Nunca hagas un commit gigante de todo el día.
-> Haz commits pequeños, claros y ordenados.
-
----
-
-# 🟦 5. Subir tu rama feature al remoto
-
-Siempre sube tu rama **antes de terminar tu sesión**, para no perder trabajo:
-
-```bash
-git push -u origin feature/<nombre>
-```
-
-Esto crea la rama en GitHub.
-
----
-
-# 🟫 6. Crear un Pull Request hacia `dev`
-
-En GitHub:
-
-1. Ve a **Pull Requests**
-2. Click en **Compare & pull request**
-3. Base: `dev`
-4. Compare: `feature/<nombre>`
-5. Revisar cambios en **Files changed**
-6. Solicitar revisión (si tus reglas lo requieren)
-7. Aprobar desde otra cuenta y hacer **Merge**
-
-> Toda modificación a `dev` debe venir por Pull Request.
-> Nunca se hace `git push dev` directamente.
-
----
-
-# 🟪 7. Sincronizar `dev` local después del merge
-
-Una vez mergeado el PR en `dev` desde GitHub, debes sincronizar tu entorno local:
-
-```bash
-git checkout dev
-git fetch origin
-git pull --no-edit
-git status
-```
-
-Debe salir:
-
-```
-Your branch is up to date with 'origin/dev'.
-nothing to commit, working tree clean
+Your branch is up to date with 'origin/main'.
 ```
 
 ---
 
-# 🟫 7.1 Ejemplo práctico completo del flujo diario con PR (caso real)
+# 🏆 Flujo completo finalizado
 
-Este flujo documenta exactamente lo que hiciste al crear la documentación del Manual de Vuelo.
+Tu entorno ahora está:
 
-### 1. Crear una rama feature
+* ✔️ Limpio
+* ✔️ Sin ramas basura
+* ✔️ Sin PRs pendientes
+* ✔️ `dev` y `main` sincronizados
+* ✔️ Listo para crear una nueva rama de trabajo
 
-```bash
-git checkout -b docs/00-manual-de-vuelo
-```
+> 🚀 **Este documento refleja EXACTAMENTE tu flujo profesional, con la misma estructura, estilo y formato que el manual original.**
 
-Salida:
-
-```
-Switched to a new branch 'docs/00-manual-de-vuelo'
-```
-
-### 2. Abrir VS Code para editar
-
-```bash
-code .
-```
-
-### 3. En VS Code se hizo:
-
-1. Crear carpeta `docs/`
-2. Crear archivo `00_manual_de_vuelo.md`
-3. Editar el contenido
-4. Guardar los cambios
-
-### 4. Confirmar los cambios en Git Bash
-
-```bash
-git status
-```
-
-Salida:
-
-```
-Untracked files:
-    docs/
-```
-
-### 5. Agregar los archivos
-
-```bash
-git add .
-```
-
-### 6. Hacer commit
-
-```bash
-git commit -m "docs: agregar manualmente la documentación manual de vuelo inicial"
-```
-
-Salida:
-
-```
-1 file changed, 181 insertions(+)
-create mode 100644 docs/00_manual_de_vuelo.md
-```
-
-### 7. Subir la rama al remoto
-
-```bash
-git push -u origin docs/00-manual-de-vuelo
-```
-
-Git responde con:
-
-```
-Create a pull request for 'docs/00-manual-de-vuelo' on GitHub
-```
-
-### 8. Crear el Pull Request en GitHub (usuario: caviloriam)
-
-* Ir al repo → Pull Requests → New Pull Request
-* `base`: **dev**
-* `compare`: **docs/00-manual-de-vuelo**
-* Crear el PR
-* Asignar como revisor a **ViWoodDev**
-
-### 9. Revisar el PR (usuario: ViWoodDev)
-
-* Abrir el PR asignado
-* Click en **Review changes → Approve**
-* Añadir comentario
-* Confirmar revisión
-
-### 10. Merge del PR
-
-* Desde ViWoodDev o desde caviloriam (si las reglas lo permiten)
-* Click en **Merge pull request**
-* Confirmar merge
-
-### 11. Eliminación automática de rama remota
-
-GitHub elimina la rama remota si está configurado.
-
-### 12. Borrar la rama feature local
-
-```bash
-git checkout dev
-git branch -d docs/00-manual-de-vuelo
-```
-
-### 13. Sincronizar nuevamente dev
-
-```bash
-git fetch origin
-git pull --no-edit
-```
-
----
-
-# 🟥 9. Reglas de oro del Flujo Diario
-
-Una vez mergeado el PR:
-
-```bash
-git checkout dev
-git pull --no-edit
-git status
-```
-
-Debe decir:
-
-```
-Your branch is up to date with 'origin/dev'.
-nothing to commit, working tree clean
-```
-
----
-
-# 🟩 8. Borrar la rama feature (local y remoto)
-
-Después de que se haya mergeado en `dev`:
-
-### Local:
-
-```bash
-git branch -d feature/<nombre>
-```
-
-### Remoto:
-
-```bash
-git push origin --delete feature/<nombre>
-```
-
-Esto mantiene tu entorno limpio y profesional.
-
----
-
-# 🟧 8.5 Ejemplo práctico del flujo diario (caso real)
-
-Este es el **flujo completo y real** utilizado para crear la documentación del archivo `00_manual_de_vuelo.md` dentro de la carpeta `docs/`.
-
-### 1. Crear la rama de trabajo
-
-```bash
-git checkout -b docs/00-manual-de-vuelo
-```
-
-Salida:
-
-```
-Switched to a new branch 'docs/00-manual-de-vuelo'
-```
-
-### 2. Abrir Visual Studio Code
-
-```bash
-code .
-```
-
-### 3. Dentro de VS Code
-
-* Crear la carpeta `docs/`
-* Crear el archivo `00_manual_de_vuelo.md`
-* Editar el contenido
-* Guardar los cambios
-
-### 4. Verificar en Git Bash
-
-```bash
-git status
-```
-
-Salida:
-
-```
-Untracked files:
-  docs/
-```
-
-### 5. Agregar los cambios
-
-```bash
-git add .
-```
-
-### 6. Confirmar el commit
-
-```bash
-git commit -m "docs: agregar manualmente la documentación manual de vuelo inicial"
-```
-
-Salida:
-
-```
-1 file changed, 181 insertions(+)
-create mode 100644 docs/00_manual_de_vuelo.md
-```
-
-### 7. Subir la rama al remoto
-
-```bash
-git push -u origin docs/00-manual-de-vuelo
-```
-
-Salida:
-
-```
-Create a pull request for 'docs/00-manual-de-vuelo' on GitHub
-```
-
-### 8. Crear el Pull Request (usuario caviloriam)
-
-* Ir al repo en GitHub
-* Abrir **Pull Requests**
-* Crear PR base `dev`, compare `docs/00-manual-de-vuelo`
-* Asignar revisor: **ViWoodDev**
-
-### 9. Revisar y aprobar el PR (usuario ViWoodDev)
-
-* Ir al mismo PR
-* Clic en **Review changes** → **Approve**
-* Añadir comentario
-* Confirmar aprobación
-
-### 10. Hacer merge del PR
-
-* Desde GitHub (ViWoodDev)
-* Click en **Merge pull request**
-* Confirmar merge
-
-### 11. Eliminación automática de la rama
-
-GitHub elimina la rama una vez finalizado el merge (si está configurado).
-
----
-
-# 🟥 9. Reglas de oro del Flujo Diario
-
-1. **Nunca trabajar en `main` ni en `dev`:
-   Solo trabajar en ramas `feature/*`.**
-
-2. **Siempre actualizar dev antes de crear una nueva feature.**
-
-3. **Un commit = un cambio lógico.**
-
-4. **Un PR por tarea.**
-
-5. **Sin PRs gigantes.**
-
-6. **Sin ramas viejas o abandonadas.**
-
-7. **Sin trabajo local sin subir al remoto.**
-
-8. **Merge a dev SIEMPRE vía Pull Request.**
-
-9. **Si hay conflictos, resolverlos siempre en una feature nueva, nunca directo en dev.**
-
-10. **Sin prisas: Git no perdona errores en ramas protegidas.**
-
----
-
-# 🟦 10. Conclusión
-
-Este manual garantiza:
-
-* Organización profesional
-* Flujo de trabajo limpio
-* Historial de commits impecable
-* Evitar conflictos innecesarios
-* Trazabilidad perfecta en GitHub
-
-Debes seguir este checklist TODOS los días, sin excepción, antes de crear cualquier nueva tarea o continuar una existente.
-
-> **Tu repositorio está estructurado para trabajar como un desarrollador senior:
-> ramas protegidas, PRs obligatorios, historia limpia y control absoluto del flujo.**
